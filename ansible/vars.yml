@@ -25,13 +25,13 @@ pythonpath: "{{ install_root }}/{{ project_name }}/hello/apps"
 
 # the git repository URL for the project
 project_repo: git@github.com:technivore/django-hello-world.git
-    
+
 # a private key that has access to the repository URL
 ssh_private_key: ~/.ssh/id_rsa
 
 # The value of your django project's STATIC_ROOT settings.
 # This will be the directory that django's `collectstatic` management command
-# copies static files to, and it must be an absolute path. The default value 
+# copies static files to, and it must be an absolute path. The default value
 # here assumes that STATIC_ROOT is set in your settings.py like so:
 # STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'static'))
 static_root: "{{ install_root }}/{{ project_name }}/static"
@@ -39,7 +39,7 @@ static_root: "{{ install_root }}/{{ project_name }}/static"
 # the dns name or names (space separated) for your server
 server_name: django-hello.com www.django-hello.com
 
-# database setup. Note that because this playbook doesn't touch the default 
+# database setup. Note that because this playbook doesn't touch the default
 # postgres pg_hba.conf file, we use local password-based authentication for
 # postgres and thus you need to provide a username and password, and your
 # settings.py MUST set "localhost" or "127.0.0.1" as the HOST value. For
@@ -57,6 +57,7 @@ server_name: django-hello.com www.django-hello.com
 db_name: hello
 db_user: hello
 db_password: changeme
+db_root_password: ''
 
 # apt packages, you should not need to change this unless you have packages
 # listed in your requirements.txt that depend on system packages.
@@ -64,8 +65,11 @@ system_packages:
   - git
   - nginx
   - gunicorn
+  - mysql-server
+  - mysql-client
   - postgresql
   - postgresql-server-dev-all
+  - python-mysqldb
   - python-pip
   - python-dev
   - python-psycopg2

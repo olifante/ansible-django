@@ -16,19 +16,36 @@
     - name: Create directory for app
       file: path={{ install_root }}/{{ project_name }} state=directory
 
+    - name: Configure MySql
+      template: src=files/my.j2 dest=/etc/mysql/my.cnf
+      notify: restart mysql
+
+    - name: start mysql
+      service: name=mysql state=started
+
+    - name: create mysql database user
+      mysql_user: name={{ db_user }} password={{ db_password }} priv=*.*:ALL,GRANT state=present login_user=root login_password={{ db_root_password }}
+
+    - name: create mysql database
+      mysql_db: name={{ db_name }} login_host=localhost login_user={{ db_user }} login_password={{ db_password }} state=present
+
     - name: make sure postgresql server is running
       service: name=postgresql state=started
 
-    - name: create database
+    - name: create postgres database
       become_user: postgres
       postgresql_db: name={{ db_name }}
 
-    - name: create database user
+    - name: create postgres database user
       become_user: postgres
       postgresql_user: db={{ db_name }} name={{ db_user }} password={{ db_password }} priv=ALL
 
     - name: remove default nginx site
       file: path=/etc/nginx/sites-enabled/default state=absent
+
+  handlers:
+    - name: restart mysql
+      service: name=mysql state=restarted
 
 - include: deploy.yml
 
