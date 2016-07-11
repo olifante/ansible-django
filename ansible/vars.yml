@@ -67,6 +67,7 @@ system_packages:
   - gunicorn
   - mysql-server
   - mysql-client
+  - libmysqlclient-dev
   - postgresql
   - postgresql-server-dev-all
   - python-mysqldb
