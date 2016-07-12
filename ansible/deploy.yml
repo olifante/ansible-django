@@ -7,7 +7,17 @@
 
   tasks:
     - name: Clone/pull project repo
-      git: repo={{ project_repo }} dest={{ install_root }}/{{ project_name }} accept_hostkey=yes
+      git: repo={{ project_repo }}
+           dest={{ install_root }}/{{ project_name }} accept_hostkey=yes
+           version=master
+           force=yes
+      notify:
+      - restart gunicorn
+
+    - name: Clone/pull jetson
+      git: repo={{ jetson_repo }}
+           dest={{ install_root }}/jetson accept_hostkey=yes
+           version=django_1_5
       notify:
       - restart gunicorn
 
