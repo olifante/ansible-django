@@ -39,6 +39,9 @@
       notify:
       - restart nginx
 
+    - name: django syncdb
+      django_manage: command=syncdb app_path={{ install_root }}/{{ project_name }} pythonpath={{ pythonpath }}
+
     - name: django migrate
       django_manage: command=migrate app_path={{ install_root }}/{{ project_name }} pythonpath={{ pythonpath }}
 
