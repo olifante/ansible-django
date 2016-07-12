@@ -74,5 +74,7 @@ system_packages:
   - python-mysqldb
   - python-pip
   - python-dev
+  - memcached
+  - libmemcached-dev
 
 # vim:ft=ansible:
