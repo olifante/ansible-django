@@ -14,6 +14,9 @@
       notify:
       - restart gunicorn
 
+    - name: copy local version of requirements.txt
+      copy: src=/Users/tiago/DjangoProjects/ln_container/langenacht/requirements.txt dest=/srv/langenacht/requirements.txt
+
     - name: Clone/pull jetson
       git: repo={{ jetson_repo }}
            dest={{ install_root }}/jetson accept_hostkey=yes
