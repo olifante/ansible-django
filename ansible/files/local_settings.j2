@@ -1,0 +1,22 @@
+# -*- coding: UTF-8 -*-
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '{{ db_name }}',
+        'USER': '{{ db_user }}',
+        'HOST': 'localhost',
+        'PASSWORD': '{{ db_password }}',
+    }
+}
+
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+]
+
+RAVEN_CONFIG = {
+    'dsn': None,
+}

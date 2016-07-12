@@ -29,6 +29,11 @@
       notify:
       - restart gunicorn
 
+    - name: copy local settings
+      template: src=files/local_settings.j2 dest={{ install_root }}/{{ project_name }}/local_settings.py
+      notify:
+      - restart gunicorn
+
     - name: copy nginx config
       template: src=files/nginx.j2 dest=/etc/nginx/sites-enabled/{{ project_name }}.conf
       notify:
