@@ -14,14 +14,6 @@
       notify:
       - restart gunicorn
 
-    - name: copy fixed migrations
-      copy: src=/Users/tiago/DjangoProjects/ln_container/langenacht/{{ item }}
-            dest=/srv/langenacht/{{ item }}
-      with_items:
-        - apps/museums/migrations/0035_contact_and_postal_address_renoved.py
-        - apps/editorial/migrations/0006_css_class_added.py
-        - apps/workshops/migrations/0023_no_district.py
-
     - name: Clone/pull jetson
       git: repo={{ jetson_repo }}
            dest={{ install_root }}/jetson accept_hostkey=yes
@@ -29,11 +21,6 @@
            force=yes
       notify:
       - restart gunicorn
-
-    - name: remove broken migration
-      file:
-        path: "{{ install_root }}/jetson/apps/i18n/migrations/0002_load_default_data.py"
-        state: absent
 
     - name: install python packages
       pip: requirements={{ install_root }}/{{ project_name }}/requirements.txt
