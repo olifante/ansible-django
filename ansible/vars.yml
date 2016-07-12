@@ -68,11 +68,8 @@ system_packages:
   - mysql-server
   - mysql-client
   - libmysqlclient-dev
-  - postgresql
-  - postgresql-server-dev-all
   - python-mysqldb
   - python-pip
   - python-dev
-  - python-psycopg2
 
 # vim:ft=ansible:

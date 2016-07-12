@@ -29,17 +29,6 @@
     - name: create mysql database
       mysql_db: name={{ db_name }} login_host=localhost login_user={{ db_user }} login_password={{ db_password }} state=present
 
-    - name: make sure postgresql server is running
-      service: name=postgresql state=started
-
-    - name: create postgres database
-      become_user: postgres
-      postgresql_db: name={{ db_name }}
-
-    - name: create postgres database user
-      become_user: postgres
-      postgresql_user: db={{ db_name }} name={{ db_user }} password={{ db_password }} priv=ALL
-
     - name: remove default nginx site
       file: path=/etc/nginx/sites-enabled/default state=absent
 
