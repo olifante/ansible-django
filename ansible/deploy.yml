@@ -14,8 +14,13 @@
       notify:
       - restart gunicorn
 
-    - name: copy local version of requirements.txt
-      copy: src=/Users/tiago/DjangoProjects/ln_container/langenacht/requirements.txt dest=/srv/langenacht/requirements.txt
+    - name: copy fixed migrations
+      copy: src=/Users/tiago/DjangoProjects/ln_container/langenacht/{{ item }}
+            dest=/srv/langenacht/{{ item }}
+      with_items:
+        - apps/museums/migrations/0035_contact_and_postal_address_renoved.py
+        - apps/editorial/migrations/0006_css_class_added.py
+        - apps/workshops/migrations/0023_no_district.py
 
     - name: Clone/pull jetson
       git: repo={{ jetson_repo }}
