@@ -3,8 +3,7 @@ server {
 	server_name {{ server_name }};
 	charset utf-8;
 
-
-	location /static {
+	location /static/\d+ {
 		alias {{ static_root }};
 	}
 
