@@ -57,7 +57,7 @@ server_name: lange-nacht-der-museen.de www.lange-nacht-der-museen.de
 #         'PASSWORD': 'changeme',
 #     }
 # }
-db_name: hello
+db_name: langenacht
 db_user: hello
 db_password: changeme
 db_root_password: ''
