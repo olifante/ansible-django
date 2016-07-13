@@ -10,7 +10,6 @@
       git: repo={{ project_repo }}
            dest={{ install_root }}/{{ project_name }} accept_hostkey=yes
            version=master
-           force=yes
       notify:
       - restart gunicorn
 
@@ -18,7 +17,6 @@
       git: repo={{ jetson_repo }}
            dest={{ install_root }}/jetson accept_hostkey=yes
            version=django_1_5
-           force=yes
       notify:
       - restart gunicorn
 
