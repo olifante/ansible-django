@@ -9,6 +9,14 @@ server {
 		alias {{ static_root }}/;
 	}
 
+	location /media/ {
+		alias {{ install_root }}/{{ project_name }}/media/;
+	}
+
+	rewrite "/jetson-media/\d+/(.*)" /jetson-media/$1 last;
+
+	location /jetson-media/ {
+		alias {{ install_root }}/jetson/media/;
 	}
 
 	location / {
