@@ -35,6 +35,11 @@
       notify:
       - restart nginx
 
+    - name: copy memcached config
+      template: src=files/memcached.conf.j2 dest=/etc/memcached.conf
+      notify:
+      - restart memcached
+
     - name: django syncdb
       django_manage: command=syncdb app_path={{ install_root }}/{{ project_name }} pythonpath={{ pythonpath }}
 
@@ -58,6 +63,9 @@
   handlers:
     - name: restart nginx
       service: name=nginx state=restarted
+
+    - name: restart memcached
+      service: name=memcached state=restarted
 
     - name: restart gunicorn
       service: name=gunicorn state=restarted
