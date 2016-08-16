@@ -24,7 +24,19 @@
       service: name=mysql state=started
 
     - name: create mysql database user
-      mysql_user: name={{ db_user }} password={{ db_password }} priv=*.*:ALL,GRANT state=present login_user=root login_password={{ db_root_password }}
+      mysql_user:
+        name={{ db_user }}
+        host={{ item }}
+        password={{ db_password }}
+        priv=*.*:ALL,GRANT
+        state=present
+        login_user=root
+        login_password={{ db_root_password }}
+      with_items:
+        - "{{ ansible_hostname }}"
+        - 127.0.0.1
+        - ::1
+        - localhost
 
     - name: create mysql database
       mysql_db: name={{ db_name }} login_host=localhost login_user={{ db_user }} login_password={{ db_password }} state=present
