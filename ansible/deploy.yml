@@ -13,6 +13,9 @@
       notify:
       - restart gunicorn
 
+    - name: Creates media directory
+      file: path={{ install_root }}/{{ project_name }}/media/ state=directory
+
     - name: Clone/pull jetson
       git: repo={{ jetson_repo }}
            dest={{ install_root }}/jetson accept_hostkey=yes
