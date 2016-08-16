@@ -33,7 +33,9 @@
         login_user=root
         login_password={{ db_root_password }}
       with_items:
-        - "{{ ansible_hostname }}"
+        - 80.147.241.31
+        - '{{ ansible_hostname }}'
+        - '{{ ansible_default_ipv4["address"] }}'
         - 127.0.0.1
         - ::1
         - localhost
