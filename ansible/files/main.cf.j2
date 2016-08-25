@@ -28,13 +28,13 @@ smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 # information on enabling SSL in the smtp client.
 
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-myhostname = ubuntu-1gb-fra1-01
+myhostname = $myhostname
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
-mydestination = ubuntu-1gb-fra1-01, localhost.localdomain, , localhost
+mydestination = $myhostname, localhost.lange-nacht-der-museen.de, lange-nacht-der-museen.de
 relayhost =
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
 mailbox_size_limit = 0
 recipient_delimiter = +
-inet_interfaces = all
+inet_interfaces = loopback-only
 inet_protocols = all
