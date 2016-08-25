@@ -24,6 +24,10 @@
       debconf: name=postfix question="postfix/main_mailer_type" value="'Internet Site'" vtype="string"
       notify: restart postfix
 
+    - name: Copy postfix config
+      template: src=files/main.cf.j2 dest=/etc/postfix/main.cf
+      notify: restart postfix
+
     - name: Configure MySql
       template: src=files/my.j2 dest=/etc/mysql/my.cnf
       notify: restart mysql
