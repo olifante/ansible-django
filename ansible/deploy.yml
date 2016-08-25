@@ -13,6 +13,14 @@
       notify:
       - restart gunicorn
 
+    - name: Check if cron file exists
+      stat: path=/srv/langenacht/deployment/ubuntu_production/crontab
+      register: cron_file
+
+    - name: Copy crontab if exists
+      shell: crontab /srv/langenacht/deployment/ubuntu_production/crontab
+      when: cron_file.stat.exists is defined and cron_file.stat.exists
+
     - name: Creates media directory
       file: path={{ install_root }}/{{ project_name }}/media/ state=directory
 
@@ -72,4 +80,5 @@
 
     - name: restart gunicorn
       service: name=gunicorn state=restarted
+
 # vim:ft=ansible:
