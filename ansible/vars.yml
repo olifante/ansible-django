@@ -74,5 +74,6 @@ system_packages:
   - python-dev
   - memcached
   - libmemcached-dev
+  - mailutils
 
 # vim:ft=ansible:

@@ -16,6 +16,14 @@
     - name: Create directory for app
       file: path={{ install_root }}/{{ project_name }} state=directory
 
+    - name: Set Postfix option hostname
+      debconf: name=postifx question="postfix/mailname" value="{{ ansible_fqdn }}" vtype="string"
+      notify: restart postfix
+
+    - name: Set Postfix option type as internet site
+      debconf: name=postfix question="postfix/main_mailer_type" value="'Internet Site'" vtype="string"
+      notify: restart postfix
+
     - name: Configure MySql
       template: src=files/my.j2 dest=/etc/mysql/my.cnf
       notify: restart mysql
@@ -81,6 +89,8 @@
   handlers:
     - name: restart mysql
       service: name=mysql state=restarted
+    - name: restart postfix
+      service: name=postfix state=restarted
     - name: update timezone
       command: dpkg-reconfigure --frontend noninteractive tzdata
 
