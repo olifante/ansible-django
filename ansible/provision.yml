@@ -6,6 +6,9 @@
   become: yes
 
   tasks:
+    - name: Set hostname
+      hostname: name=www.lange-nacht-der-museen.de
+
     - name: Install system packages
       apt: pkg={{ item }} update-cache=yes
       with_items: "{{ system_packages }}"
