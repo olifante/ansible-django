@@ -75,5 +75,6 @@ system_packages:
   - memcached
   - libmemcached-dev
   - mailutils
+  - unzip
 
 # vim:ft=ansible:
