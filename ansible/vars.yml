@@ -76,5 +76,11 @@ system_packages:
   - libmemcached-dev
   - mailutils
   - unzip
+  - libtiff5-dev
+  - libjpeg8-dev
+  - zlib1g-dev
+  - libfreetype6-dev
+  - liblcms2-dev
+  - libwebp-dev
 
 # vim:ft=ansible:
